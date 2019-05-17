@@ -18,7 +18,7 @@ app.controller('AuthController', ['$http', function($http) {
         }, (error) => {
             console.log(error);
         });
-    }
+    };
 
     this.logIn = function() {
       $http({
@@ -30,10 +30,23 @@ app.controller('AuthController', ['$http', function($http) {
           }
       }).then((response) => {
         console.log(response);
-
+        this.loggedInUsername = response.config.data.username;
+        this.username = null;
+        this.password = null;
       }, (error) => {
           console.log(error);
       });
-    }
+    };
+
+    this.logOut = function(){
+      $http({
+        method: 'DELETE',
+        url: '/sessions'
+      }).then(response=>{
+        this.loggedInUsername = null;
+      }).catch(error=>{
+        console.log(error);
+      });
+    };
 
 }]);
