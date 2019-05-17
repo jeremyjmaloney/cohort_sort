@@ -20,10 +20,6 @@ app.use(express.static('public'));
 // const boardsController = require('./controllers/boardsController.js');
 // app.use('/boards', boardsController);
 
-app.get('/', (req, res) => {
-  res.send('yo');
-});
-
 app.listen(PORT, () => {
   console.log(`...listening on port ${PORT}`);
 });
