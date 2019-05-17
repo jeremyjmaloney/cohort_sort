@@ -13,10 +13,11 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 app.use(express.static('public'));
 
-const sessionsController = require('./controllers/sessionsController.js');
-app.use('/sessions', sessionsController);
 const usersController = require('./controllers/usersController.js');
 app.use('/users', usersController);
+const sessionsController = require('./controllers/sessionsController.js');
+app.use('/sessions', sessionsController);
+
 // const boardsController = require('./controllers/boardsController.js');
 // app.use('/boards', boardsController);
 

@@ -13,6 +13,7 @@ router.delete('/', (req, res)=>{
 });
 
 router.post('/', (req, res)=>{
+    
     User.findOne({username:req.body.loggedUser}, (err, foundUser)=>{
         if(bcrypt.compareSync(req.body.loggedUserPassword, foundUser.password)) {
             req.session.currentUser = foundUser;

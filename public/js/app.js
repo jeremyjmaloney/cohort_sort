@@ -19,4 +19,22 @@ app.controller('AuthController', ['$http', function($http) {
             console.log(error);
         });
     }
+
+    this.logIn = function() {
+      $http({
+          method: 'POST',
+          url: '/sessions',
+          data: {
+              username: this.loggedUser,
+              password: this.loggedUserPassword
+          }
+      }).then((response) => {
+        console.log(response);
+        this.loggedUser = response.data.username
+
+      }, (error) => {
+          console.log(error);
+      });
+    }
+
 }]);
