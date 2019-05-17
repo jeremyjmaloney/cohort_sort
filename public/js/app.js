@@ -8,13 +8,13 @@ app.controller('AuthController', ['$http', function($http) {
             method: 'POST',
             url: '/users',
             data: {
-                username: this.username,
-                password: this.password
+                username: this.newUsername,
+                password: this.newPassword
             }
         }).then((response) => {
-            this.username = null;
-            this.password = null;
-            console.log(response.config.data.username, response.config.data.password);
+          console.log(response.config.data.username, response.config.data.password);
+            this.newUsername = null;
+            this.newPassword = null;
         }, (error) => {
             console.log(error);
         });
@@ -25,12 +25,11 @@ app.controller('AuthController', ['$http', function($http) {
           method: 'POST',
           url: '/sessions',
           data: {
-              username: this.loggedUser,
-              password: this.loggedUserPassword
+              username: this.username,
+              password: this.password
           }
       }).then((response) => {
         console.log(response);
-        this.loggedUser = response.data.username
 
       }, (error) => {
           console.log(error);

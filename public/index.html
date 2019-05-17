@@ -13,14 +13,14 @@
   <div ng-controller="AuthController as auth">
       <h2>Create User</h2>
       <form ng-submit="auth.createUser()">
-          <input type="text" ng-model="auth.username"/>
-          <input type="password" ng-model="auth.password"/>
+          <input type="text" ng-model="auth.newUsername"/>
+          <input type="password" ng-model="auth.newPassword"/>
           <input type="submit" value="Create User"/>
       </form>
       <h2>Log In</h2>
       <form ng-submit="auth.logIn()">
-          <input type="text" ng-model="auth.loggedUser"/>
-          <input type="password" ng-model="auth.loggedUserPassword"/>
+          <input type="text" ng-model="auth.username"/>
+          <input type="password" ng-model="auth.password"/>
           <input type="submit" value="Log In"/>
       </form>
   </div>
