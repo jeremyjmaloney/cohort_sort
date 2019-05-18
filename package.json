@@ -1,0 +1,26 @@
+{
+  "name": "cohort_sort",
+  "version": "1.0.0",
+  "description": "Project Mangement App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremyjmaloney/cohort_sort.git"
+  },
+  "author": "Jeremy Maloney, Iris de Andrade, Molly Stone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeremyjmaloney/cohort_sort/issues"
+  },
+  "homepage": "https://github.com/jeremyjmaloney/cohort_sort#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "express": "^4.17.0",
+    "express-session": "^1.16.1",
+    "mongoose": "^5.5.9"
+  }
+}
