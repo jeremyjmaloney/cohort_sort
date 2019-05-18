@@ -11,7 +11,7 @@ db.on('error', err => console.log(err.message + ' is Mongod not running?'));
 db.on('disconnected', () => console.log('mongo disconnected'));
 
 app.use(session({
-    secret:'jeremyirismolly',
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false
 }));
