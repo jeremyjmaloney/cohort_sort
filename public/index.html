@@ -26,9 +26,11 @@
         </form>
       </div>
       <div ng-if="main.loggedInUsername">
-        <h1>Main Page!</h1>
         <h2>Hey {{main.loggedInUsername}}</h2>
-        <h2>Our main page stuff with go here</h2>
+        <form ng-submit="main.createBoard()">
+            <input type="text" ng-model="main.title" placeholder="Board Name"/>
+            <input type="submit" value="Create Board"/>
+        </form>
         <button ng-click="main.logOut()">Log Out</button>
       </div>
   </div>
