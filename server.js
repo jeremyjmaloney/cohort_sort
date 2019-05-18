@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const db = mongoose.connection;
+require('dotenv').config();
 const session = require('express-session');
 
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cohortsort';
