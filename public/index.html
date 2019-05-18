@@ -8,28 +8,28 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"></script>
   <script src="/js/app.js" charset="utf-8"></script>
 </head>
-<body>
+<body ng-controller="MainController as main">
   <h1>Welcome</h1>
-  <div ng-controller="AuthController as auth">
-      <div ng-if="!(auth.loggedInUsername)">
+  <div>
+      <div ng-if="!(main.loggedInUsername)">
         <h2>Create User</h2>
-        <form ng-submit="auth.createUser()">
-            <input type="text" ng-model="auth.newUsername"/>
-            <input type="password" ng-model="auth.newPassword"/>
+        <form ng-submit="main.createUser()">
+            <input type="text" ng-model="main.newUsername"/>
+            <input type="password" ng-model="main.newPassword"/>
             <input type="submit" value="Create User"/>
         </form>
         <h2>Log In</h2>
-        <form ng-submit="auth.logIn()">
-            <input type="text" ng-model="auth.username"/>
-            <input type="password" ng-model="auth.password"/>
+        <form ng-submit="main.logIn()">
+            <input type="text" ng-model="main.username"/>
+            <input type="password" ng-model="main.password"/>
             <input type="submit" value="Log In"/>
         </form>
       </div>
-      <div ng-if="auth.loggedInUsername">
+      <div ng-if="main.loggedInUsername">
         <h1>Main Page!</h1>
-        <h2>Hey {{auth.loggedInUsername}}</h2>
+        <h2>Hey {{main.loggedInUsername}}</h2>
         <h2>Our main page stuff with go here</h2>
-        <button ng-click="auth.logOut()">Log Out</button>
+        <button ng-click="main.logOut()">Log Out</button>
       </div>
   </div>
 </body>

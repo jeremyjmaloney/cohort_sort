@@ -1,6 +1,6 @@
 const app = angular.module('MyApp', []);
 
-app.controller('AuthController', ['$http', function($http) {
+app.controller('MainController', ['$http', function($http) {
     const controller = this;
 
     this.createUser = function() {
