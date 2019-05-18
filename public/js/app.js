@@ -31,6 +31,8 @@ app.controller('MainController', ['$http', function($http) {
       }).then((response) => {
         console.log(response);
         this.loggedInUsername = response.config.data.username;
+        // this.userId = JSON.parse(stringyfied[0]._id);
+        console.log(this.userId);
         this.username = null;
         this.password = null;
       }, (error) => {
@@ -48,5 +50,20 @@ app.controller('MainController', ['$http', function($http) {
         console.log(error);
       });
     };
+
+    this.createBoard = () => {
+        $http({
+            method: 'POST',
+            url: '/boards',
+            data: {
+                title: this.title,
+                belongsTo: this.loggedInUsername._id
+            }
+        }).then(response=>{
+          console.log(response);
+        }).catch(error=>{
+          console.log(error);
+        });
+    }
 
 }]);
