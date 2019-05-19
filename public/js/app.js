@@ -86,9 +86,39 @@ app.controller('MainController', ['$http', function($http) {
       }).then(response=>{
         console.log(response);
         this.currentBoard = response.data;
+        this.getLists(this.currentBoard._id);
       }).catch(error=>{
         console.log(error);
       });
     };
+
+    this.createList = () => {
+        $http({
+            method: 'POST',
+            url: '/lists',
+            data: {
+                listTitle: this.listTitle,
+                belongsTo: this.currentBoard._id
+            }
+        }).then((response)=>{
+          console.log(response);
+          console.log(this.currentBoard);
+           this.getLists(this.currentBoard._id);
+        }).catch((error)=>{
+          console.log(error);
+        });
+    }
+
+    this.getLists = (id) => {
+        $http({
+            method: 'GET',
+            url: '/lists/' + id
+        }).then((response) => {
+            console.log(response);
+            this.lists = response.data;
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
 
 }]);
