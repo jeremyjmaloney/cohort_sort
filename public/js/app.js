@@ -1,7 +1,7 @@
 const app = angular.module('MyApp', []);
 
 app.controller('MainController', ['$http', function($http) {
-    const controller = this;
+    this.boardClicked = false;
 
     this.createUser = function() {
         $http({
@@ -29,10 +29,8 @@ app.controller('MainController', ['$http', function($http) {
               password: this.password
           }
       }).then((response) => {
-        console.log(response);
-        this.loggedInUsername = response.config.data.username;
-        console.log(response.user);
-        console.log(this.userId);
+        console.log(response.data.user);
+        this.loggedInUser = response.data.user;
         this.username = null;
         this.password = null;
         this.getBoards();
@@ -58,7 +56,7 @@ app.controller('MainController', ['$http', function($http) {
             url: '/boards',
             data: {
                 title: this.title,
-                belongsTo: this.loggedInUsername._id
+                belongsTo: this.loggedInUser._id
             }
         }).then((response)=>{
           console.log(response);
@@ -74,11 +72,23 @@ app.controller('MainController', ['$http', function($http) {
         url: '/boards'
       }).then((response)=>{
         console.log(response);
-        this.boards = response.data.data;
-        console.log(this.boards);
+        this.boards = response.data.boards;
       }).catch((error)=>{
         console.log(error);
       });
-    }
+    };
+
+    this.showBoard = function(id){
+      this.boardClicked = true;
+      $http({
+        method: 'GET',
+        url: '/boards/' + id
+      }).then(response=>{
+        console.log(response);
+        this.currentBoard = response.data;
+      }).catch(error=>{
+        console.log(error);
+      });
+    };
 
 }]);
