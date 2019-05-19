@@ -29,10 +29,7 @@ app.controller('MainController', ['$http', function($http) {
               password: this.password
           }
       }).then((response) => {
-        console.log(response);
-        this.loggedInUsername = response.config.data.username;
         console.log(response.user);
-        console.log(this.userId);
         this.username = null;
         this.password = null;
         this.getBoards();
