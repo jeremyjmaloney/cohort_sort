@@ -20,7 +20,8 @@ router.post('/', (req, res)=>{
             req.session.currentUser = foundUser;
             res.status(201).json({
                 status: 201,
-                message: 'session created'
+                message: 'session created',
+                user: req.session.currentUser
             })
         } else {
             res.status(401).json({

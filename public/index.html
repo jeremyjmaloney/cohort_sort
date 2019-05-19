@@ -33,6 +33,11 @@
         </form>
         <button ng-click="main.logOut()">Log Out</button>
       </div>
+      <div ng-repeat="board in main.boards">
+        <div>
+          <h2>{{board.title}}</h2>
+        </div>
+      </div>
   </div>
 </body>
 </html>

@@ -31,10 +31,11 @@ app.controller('MainController', ['$http', function($http) {
       }).then((response) => {
         console.log(response);
         this.loggedInUsername = response.config.data.username;
-        // this.userId = JSON.parse(stringyfied[0]._id);
+        console.log(response.user);
         console.log(this.userId);
         this.username = null;
         this.password = null;
+        this.getBoards();
       }, (error) => {
           console.log(error);
       });
@@ -59,11 +60,25 @@ app.controller('MainController', ['$http', function($http) {
                 title: this.title,
                 belongsTo: this.loggedInUsername._id
             }
-        }).then(response=>{
+        }).then((response)=>{
           console.log(response);
-        }).catch(error=>{
+          this.getBoards();
+        }).catch((error)=>{
           console.log(error);
         });
+    }
+
+    this.getBoards = function() {
+      $http({
+        method: 'GET',
+        url: '/boards'
+      }).then((response)=>{
+        console.log(response);
+        this.boards = response.data.data;
+        console.log(this.boards);
+      }).catch((error)=>{
+        console.log(error);
+      });
     }
 
 }]);
