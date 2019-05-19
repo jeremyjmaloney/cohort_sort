@@ -18,7 +18,13 @@ router.get('/', (req, res) => {
     res.json({
       boards: foundBoards
     });
-  })
-})
+  });
+});
+
+router.get('/:id', (req, res)=>{
+  Board.findById(req.params.id, (error, foundBoard)=>{
+    res.json(foundBoard);
+  });
+});
 
 module.exports = router;

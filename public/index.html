@@ -25,7 +25,7 @@
             <input type="submit" value="Log In"/>
         </form>
       </div>
-      <div ng-if="main.loggedInUser">
+      <div ng-if="main.loggedInUser && !main.boardClicked">
         <h2>Hey {{main.loggedInUser.username}}</h2>
         <form ng-submit="main.createBoard()">
             <input type="text" ng-model="main.title" placeholder="Board Name"/>
@@ -33,10 +33,13 @@
         </form>
         <button ng-click="main.logOut()">Log Out</button>
       </div>
-      <div ng-repeat="board in main.boards">
+      <div ng-repeat="board in main.boards" ng-if="main.loggedInUser && !main.boardClicked">
         <div>
-          <h2>{{board.title}}</h2>
+          <a href="#" ng-click="main.showBoard(board._id)"><h2>{{board.title}}</h2></a>
         </div>
+      </div>
+      <div ng-if="main.boardClicked === true">
+        <h1>{{main.currentBoard.title}}
       </div>
   </div>
 </body>

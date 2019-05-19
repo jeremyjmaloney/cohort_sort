@@ -1,7 +1,7 @@
 const app = angular.module('MyApp', []);
 
 app.controller('MainController', ['$http', function($http) {
-    const controller = this;
+    this.boardClicked = false;
 
     this.createUser = function() {
         $http({
@@ -76,6 +76,19 @@ app.controller('MainController', ['$http', function($http) {
       }).catch((error)=>{
         console.log(error);
       });
-    }
+    };
+
+    this.showBoard = function(id){
+      this.boardClicked = true;
+      $http({
+        method: 'GET',
+        url: '/boards/' + id
+      }).then(response=>{
+        console.log(response);
+        this.currentBoard = response.data;
+      }).catch(error=>{
+        console.log(error);
+      });
+    };
 
 }]);
