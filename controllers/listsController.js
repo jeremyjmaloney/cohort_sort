@@ -11,8 +11,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    console.log(this.currentBoard);
-    List.find({belongsTo: req.params.id}, (error, foundLists) => {
+    List.find({belongsToBoard: req.params.id}, (error, foundLists) => {
         res.json(foundLists);
     });
 });
