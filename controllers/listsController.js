@@ -4,7 +4,9 @@ const List = require('../models/lists.js');
 
 router.post('/', (req, res) => {
     List.create(req.body, (err, createdList) => {
-        res.json(createdList);
+        res.json({
+            list: createdList
+        });
     });
 });
 

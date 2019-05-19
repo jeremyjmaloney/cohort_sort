@@ -33,7 +33,7 @@ app.controller('MainController', ['$http', function($http) {
         this.loggedInUser = response.data.user;
         this.username = null;
         this.password = null;
-        this.getBoards();
+        this.getBoards(this.loggedInUser._id);
       }, (error) => {
           console.log(error);
       });
@@ -44,7 +44,7 @@ app.controller('MainController', ['$http', function($http) {
         method: 'DELETE',
         url: '/sessions'
       }).then(response=>{
-        this.loggedInUsername = null;
+        this.loggedInUser = null;
       }).catch(error=>{
         console.log(error);
       });
@@ -60,16 +60,16 @@ app.controller('MainController', ['$http', function($http) {
             }
         }).then((response)=>{
           console.log(response);
-          this.getBoards();
+          this.getBoards(this.loggedInUser._id);
         }).catch((error)=>{
           console.log(error);
         });
     }
 
-    this.getBoards = function() {
+    this.getBoards = function(id) {
       $http({
         method: 'GET',
-        url: '/boards'
+        url: '/boards/' + id
       }).then((response)=>{
         console.log(response);
         this.boards = response.data.boards;
@@ -86,7 +86,7 @@ app.controller('MainController', ['$http', function($http) {
       }).then(response=>{
         console.log(response);
         this.currentBoard = response.data;
-        this.getLists(this.currentBoard._id);
+        this.getLists(id);
       }).catch(error=>{
         console.log(error);
       });
@@ -98,10 +98,10 @@ app.controller('MainController', ['$http', function($http) {
             url: '/lists',
             data: {
                 listTitle: this.listTitle,
-                belongsTo: this.currentBoard._id
+                belongsToBoard: this.currentBoard._id
             }
         }).then((response)=>{
-          console.log(response);
+          console.log(response.data);
           console.log(this.currentBoard);
            this.getLists(this.currentBoard._id);
         }).catch((error)=>{

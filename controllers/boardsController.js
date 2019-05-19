@@ -12,8 +12,8 @@ router.post('/', (req, res) => {
     });
 });
 
-router.get('/', (req, res) => {
-  Board.find({}, (err, foundBoards) => {
+router.get('/:id', (req, res) => {
+  Board.find({belongsTo: req.params.id}, (err, foundBoards) => {
     console.log(foundBoards);
     res.json({
       boards: foundBoards
