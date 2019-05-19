@@ -33,6 +33,9 @@ app.use('/boards', boardsController);
 const listsController = require('./controllers/listsController.js');
 app.use('/lists', listsController);
 
+const tasksController = require('./controllers/tasksController.js');
+app.use('/tasks', tasksController);
+
 app.listen(PORT, () => {
   console.log(`...listening on port ${PORT}`);
 });

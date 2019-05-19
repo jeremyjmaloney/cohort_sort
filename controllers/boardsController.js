@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
   });
 });
 
-router.get('/:id', (req, res)=>{
+router.get('/board/:id', (req, res)=>{
   Board.findById(req.params.id, (error, foundBoard)=>{
     res.json(foundBoard);
   });

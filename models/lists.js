@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const listSchema = Schema({
     listTitle: {type: String, required: true},
-    belongsTo: String
+    belongsToBoard: String
 });
 
 const List = mongoose.model('List', listSchema);
