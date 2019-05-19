@@ -82,7 +82,7 @@ app.controller('MainController', ['$http', function($http) {
       this.boardClicked = true;
       $http({
         method: 'GET',
-        url: '/boards/' + id
+        url: '/boards/board/' + id
       }).then(response=>{
         console.log(response);
         this.currentBoard = response.data;
