@@ -39,7 +39,16 @@
         </div>
       </div>
       <div ng-if="main.boardClicked === true">
-        <h1>{{main.currentBoard.title}}
+        <h1>{{main.currentBoard.title}}</h1>
+        <form ng-submit="main.createList()">
+            <input type="text" ng-model="main.listTitle" placeholder="list title"/>
+            <input type="submit" value="Create List"/>
+        </form>
+        <div ng-repeat="list in main.lists">
+            <div>
+                <h3>{{list.listTitle}}</h3>
+            </div>
+        </div>
       </div>
   </div>
 </body>

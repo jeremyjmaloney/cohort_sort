@@ -23,11 +23,15 @@ app.use(express.static('public'));
 
 const usersController = require('./controllers/usersController.js');
 app.use('/users', usersController);
+
 const sessionsController = require('./controllers/sessionsController.js');
 app.use('/sessions', sessionsController);
 
 const boardsController = require('./controllers/boardsController.js');
 app.use('/boards', boardsController);
+
+const listsController = require('./controllers/listsController.js');
+app.use('/lists', listsController);
 
 app.listen(PORT, () => {
   console.log(`...listening on port ${PORT}`);
