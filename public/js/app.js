@@ -29,7 +29,8 @@ app.controller('MainController', ['$http', function($http) {
               password: this.password
           }
       }).then((response) => {
-        console.log(response.user);
+        console.log(response.data.user);
+        this.loggedInUser = response.data.user;
         this.username = null;
         this.password = null;
         this.getBoards();
@@ -55,7 +56,7 @@ app.controller('MainController', ['$http', function($http) {
             url: '/boards',
             data: {
                 title: this.title,
-                belongsTo: this.loggedInUsername._id
+                belongsTo: this.loggedInUser._id
             }
         }).then((response)=>{
           console.log(response);
@@ -71,8 +72,7 @@ app.controller('MainController', ['$http', function($http) {
         url: '/boards'
       }).then((response)=>{
         console.log(response);
-        this.boards = response.data.data;
-        console.log(this.boards);
+        this.boards = response.data.boards;
       }).catch((error)=>{
         console.log(error);
       });

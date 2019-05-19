@@ -11,7 +11,7 @@
 <body ng-controller="MainController as main">
   <h1>Welcome</h1>
   <div>
-      <div ng-if="!(main.loggedInUsername)">
+      <div ng-if="!(main.loggedInUser)">
         <h2>Create User</h2>
         <form ng-submit="main.createUser()">
             <input type="text" ng-model="main.newUsername"/>
@@ -25,8 +25,8 @@
             <input type="submit" value="Log In"/>
         </form>
       </div>
-      <div ng-if="main.loggedInUsername">
-        <h2>Hey {{main.loggedInUsername}}</h2>
+      <div ng-if="main.loggedInUser">
+        <h2>Hey {{main.loggedInUser.username}}</h2>
         <form ng-submit="main.createBoard()">
             <input type="text" ng-model="main.title" placeholder="Board Name"/>
             <input type="submit" value="Create Board"/>
