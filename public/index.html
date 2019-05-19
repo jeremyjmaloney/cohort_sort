@@ -47,6 +47,13 @@
         <div ng-repeat="list in main.lists">
             <div>
                 <h3>{{list.listTitle}}</h3>
+                <div ng-repeat="task in main.tasks">
+                  <p>{{task.taskDescription}}</p>
+                </div>
+                <form ng-submit="main.createTask(list._id)">
+                  <input type="text" ng-model="main.taskDescription" />
+                  <input type="submit" value="Create Task" />
+                </form>
             </div>
         </div>
       </div>

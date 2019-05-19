@@ -121,4 +121,30 @@ app.controller('MainController', ['$http', function($http) {
         });
     }
 
+    this.createTask = function(listID){
+      $http({
+        method: 'POST',
+        url: '/tasks',
+        data: {
+          taskDescription: this.taskDescription,
+          belongsToList: listID
+        }
+      }).then(response => {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
+      })
+    }
+
+    this.getTask = function(){
+      $http({
+        method: 'GET',
+        url: '/tasks'
+      }).then(respons => {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
+      })
+    }
+
 }]);
