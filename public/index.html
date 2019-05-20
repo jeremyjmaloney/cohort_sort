@@ -40,6 +40,11 @@
       </div>
       <div ng-if="main.boardClicked === true">
         <h1>{{main.currentBoard.title}}</h1>
+        <button ng-click="main.addingUser = true">+</button>
+        <form ng-if="main.addingUser" ng-submit="main.addUser()">
+          <input type="text" ng-model="main.searchedUser" placeholder="Username">
+          <input type="submit" value="ADD">
+        </form>
         <form ng-submit="main.createList()">
             <input type="text" ng-model="main.listTitle" placeholder="list title"/>
             <input type="submit" value="Create List"/>

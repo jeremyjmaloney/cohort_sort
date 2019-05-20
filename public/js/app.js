@@ -6,6 +6,7 @@ app.controller('MainController', ['$http', function($http) {
     this.indexOfMoveTaskForm = null;
     this.taskBeingEdited = null;
     this.currentList = null;
+    this.addingUser = false;
 
     this.createUser = function() {
         $http({
@@ -190,6 +191,18 @@ app.controller('MainController', ['$http', function($http) {
         console.log(response);
         this.getLists(this.currentBoard._id);
       }).catch(error => {
+        console.log(error);
+      })
+    }
+
+    this.addUser = function() {
+      $http({
+        method: 'PUT',
+        url: '/boards/' + this.currentBoard._id + '/' + this.searchedUser
+      }).then(response=>{
+        console.log(response);
+        this.addingUser = false;
+      }).catch(error=>{
         console.log(error);
       })
     }
