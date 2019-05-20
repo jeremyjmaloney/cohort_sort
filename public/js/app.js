@@ -182,4 +182,16 @@ app.controller('MainController', ['$http', function($http) {
       });
     }
 
+    this.deleteList = function(listID) {
+      $http({
+        method: 'DELETE',
+        url: '/lists/' + listID
+      }).then(response => {
+        console.log(response);
+        this.getLists(this.currentBoard._id);
+      }).catch(error => {
+        console.log(error);
+      })
+    }
+
 }]);
