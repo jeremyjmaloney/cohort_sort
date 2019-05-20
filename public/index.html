@@ -48,12 +48,12 @@
             <div>
                 <h3>{{list.listTitle}}</h3>
                 <div ng-repeat="task in main.tasks | filter:list._id">
-                  <ul ng-repeat="object in main.movableLists">
-                    <li ng-click="main.moveTask(object.id)">{{object.title}}</li>
-                  </ul>
+                  <div ng-repeat="object in main.movableLists">
+                    <button ng-click="main.currentList = object.data._id; main.moveTask(object.data._id)">{{object.data.listTitle}}</button>
+                  </div>
                   <p>{{task.taskDescription}}</p>
                   <button>Edit</button>
-                  <button>=></button>
+                  <button ng-click="main.taskBeingEdited = task._id; main.checkListId()">=></button>
                   <button>X</button>
                 </div>
                 <button ng-click="main.indexOfCreateTaskForm = $index" ng-if="!(main.addButtonClicked)">ADD</button>
