@@ -27,5 +27,12 @@ router.put('/:taskID/:listID', (req, res) => {
     });
 });
 
+router.delete('/:taskID', (req, res) => {
+  Task.findByIdAndRemove(req.params.taskID, (error, deletedTask) => {
+    console.log(deletedTask);
+    res.json(deletedTask);
+  })
+})
+
 
 module.exports = router;
