@@ -4,6 +4,10 @@ app.controller('MainController', ['$http', function($http) {
     this.boardClicked = false;
     this.indexOfCreateTaskForm = null;
 
+    this.indexOfMoveTaskForm = null;
+
+    this.movableLists = [];
+
     this.createUser = function() {
         $http({
             method: 'POST',
@@ -85,7 +89,7 @@ app.controller('MainController', ['$http', function($http) {
         method: 'GET',
         url: '/boards/board/' + id
       }).then(response=>{
-        console.log(response);
+        // console.log(response);
         this.currentBoard = response.data;
         this.getLists(id);
         this.getTasks(id);
@@ -103,8 +107,13 @@ app.controller('MainController', ['$http', function($http) {
                 belongsToBoard: this.currentBoard._id
             }
         }).then((response)=>{
-          console.log(response.data);
-          console.log(this.currentBoard);
+          // console.log(response.data);
+          // console.log(this.currentBoard);
+          this.movableLists.push({
+              title: response.data.list.listTitle,
+              id: response.data.list._id
+          });
+          console.log(this.movableLists);
            this.getLists(this.currentBoard._id);
         }).catch((error)=>{
           console.log(error);
