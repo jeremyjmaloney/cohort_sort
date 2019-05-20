@@ -8,6 +8,8 @@ app.controller('MainController', ['$http', function($http) {
 
     this.movableLists = [];
 
+    this.indexOfMovingTask = null;
+
     this.createUser = function() {
         $http({
             method: 'POST',
@@ -160,6 +162,17 @@ app.controller('MainController', ['$http', function($http) {
       }).catch(error => {
         console.log(error);
       })
+    }
+
+    this.moveTask = function(listID) {
+        $http({
+            method: 'PUT',
+            url: '/tasks/' + this.indexOfMovingTask._id + '/' + listID
+        }).then(response => {
+          console.log(response);
+        }).catch(error => {
+          console.log(error);
+      });
     }
 
 }]);

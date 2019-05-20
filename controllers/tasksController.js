@@ -18,5 +18,12 @@ router.get('/:id', (req, res) => {
   });
 });
 
+router.put('/:taskID/:listID', (req, res) => {
+    Task.findByIdAndUpdate(req.params.taskID, (error, foundTask) => {
+        foundTask.belongsToList = req.params.listID;
+        res.json(foundTask);
+    });
+});
+
 
 module.exports = router;
