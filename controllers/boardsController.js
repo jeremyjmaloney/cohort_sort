@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Board = require('../models/boards.js');
+const User = require('../models/users.js');
 
 router.post('/', (req, res) => {
     Board.create(req.body, (err, createdBoard) => {
@@ -26,5 +27,17 @@ router.get('/board/:id', (req, res)=>{
     res.json(foundBoard);
   });
 });
+
+router.put('/:boardID/:searchedUser', (req, res) => {
+  console.log(req.params.searchedUser);
+  User.find({username: req.params.searchedUser}, (error, foundUser) => {
+    console.log(foundUser);
+    Board.findByIdAndUpdate(req.params.boardID, (error, foundBoard) => {
+      console.log(foundBoard);
+      foundBoard.belongsTo.push(foundUser._id);
+      res.json(foundBoard);
+    })
+  })
+})
 
 module.exports = router;
