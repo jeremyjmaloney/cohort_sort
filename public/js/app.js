@@ -3,12 +3,9 @@ const app = angular.module('MyApp', []);
 app.controller('MainController', ['$http', function($http) {
     this.boardClicked = false;
     this.indexOfCreateTaskForm = null;
-
     this.indexOfMoveTaskForm = null;
-
-    this.movableLists = [];
-
-    this.indexOfMovingTask = null;
+    this.taskBeingEdited = null;
+    this.currentList = null;
 
     this.createUser = function() {
         $http({
@@ -36,7 +33,7 @@ app.controller('MainController', ['$http', function($http) {
               password: this.password
           }
       }).then((response) => {
-        console.log(response.data.user);
+        // console.log(response.data.user);
         this.loggedInUser = response.data.user;
         this.username = null;
         this.password = null;
@@ -66,7 +63,7 @@ app.controller('MainController', ['$http', function($http) {
                 belongsTo: this.loggedInUser._id
             }
         }).then((response)=>{
-          console.log(response);
+          // console.log(response);
           this.getBoards(this.loggedInUser._id);
         }).catch((error)=>{
           console.log(error);
@@ -78,7 +75,7 @@ app.controller('MainController', ['$http', function($http) {
         method: 'GET',
         url: '/boards/' + id
       }).then((response)=>{
-        console.log(response);
+        // console.log(response);
         this.boards = response.data.boards;
       }).catch((error)=>{
         console.log(error);
@@ -109,13 +106,6 @@ app.controller('MainController', ['$http', function($http) {
                 belongsToBoard: this.currentBoard._id
             }
         }).then((response)=>{
-          // console.log(response.data);
-          // console.log(this.currentBoard);
-          this.movableLists.push({
-              title: response.data.list.listTitle,
-              id: response.data.list._id
-          });
-          console.log(this.movableLists);
            this.getLists(this.currentBoard._id);
         }).catch((error)=>{
           console.log(error);
@@ -167,9 +157,11 @@ app.controller('MainController', ['$http', function($http) {
     this.moveTask = function(listID) {
         $http({
             method: 'PUT',
-            url: '/tasks/' + this.indexOfMovingTask._id + '/' + listID
+            url: '/tasks/' + this.taskBeingEdited + '/' + listID
         }).then(response => {
           console.log(response);
+          this.getTasks();
+          this.taskBeingEdited = null;
         }).catch(error => {
           console.log(error);
       });
