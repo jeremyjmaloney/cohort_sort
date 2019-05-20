@@ -113,6 +113,7 @@ app.controller('MainController', ['$http', function($http) {
     }
 
     this.getLists = (id) => {
+        console.log(this.currentList);
         $http({
             method: 'GET',
             url: '/lists/' + id
@@ -154,10 +155,12 @@ app.controller('MainController', ['$http', function($http) {
       })
     }
 
-    this.moveTask = function(listID) {
+    this.moveTask = function() {
+        console.log(this.taskBeingEdited);
+        console.log(this.currentList);
         $http({
             method: 'PUT',
-            url: '/tasks/' + this.taskBeingEdited + '/' + listID
+            url: '/tasks/' + this.taskBeingEdited + '/' + this.currentList
         }).then(response => {
           console.log(response);
           this.getTasks();
@@ -165,6 +168,10 @@ app.controller('MainController', ['$http', function($http) {
         }).catch(error => {
           console.log(error);
       });
+    }
+
+    this.checkID = function(id) {
+        console.log(id);
     }
 
 }]);
