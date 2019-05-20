@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  Task.find({belongsToList: req.params.id}, (error, foundTasks) => {
+  Task.find({belongsToBoard: req.params.id}, (error, foundTasks) => {
     res.json(foundTasks);
   });
 });

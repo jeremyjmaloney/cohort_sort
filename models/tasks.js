@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const taskSchema = Schema({
     taskDescription: {type: String, required: true},
-    belongsToList: String
+    belongsToList: String,
+    belongsToBoard: String
 });
 
 const Task = mongoose.model('Task', taskSchema);

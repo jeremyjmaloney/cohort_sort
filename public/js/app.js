@@ -2,6 +2,7 @@ const app = angular.module('MyApp', []);
 
 app.controller('MainController', ['$http', function($http) {
     this.boardClicked = false;
+    this.indexOfCreateTaskForm = null;
 
     this.createUser = function() {
         $http({
@@ -87,6 +88,7 @@ app.controller('MainController', ['$http', function($http) {
         console.log(response);
         this.currentBoard = response.data;
         this.getLists(id);
+        this.getTasks(id);
       }).catch(error=>{
         console.log(error);
       });
@@ -127,21 +129,25 @@ app.controller('MainController', ['$http', function($http) {
         url: '/tasks',
         data: {
           taskDescription: this.taskDescription,
-          belongsToList: listID
+          belongsToList: listID,
+          belongsToBoard: this.currentBoard
         }
       }).then(response => {
         console.log(response);
+        this.getTasks();
+        this.indexOfCreateTaskForm = null;
       }).catch(error => {
         console.log(error);
       })
     }
 
-    this.getTask = function(){
+    this.getTasks = function(){
       $http({
         method: 'GET',
-        url: '/tasks'
-      }).then(respons => {
+        url: '/tasks/' + this.currentBoard._id
+      }).then(response => {
         console.log(response);
+        this.tasks = response.data;
       }).catch(error => {
         console.log(error);
       })
