@@ -170,8 +170,16 @@ app.controller('MainController', ['$http', function($http) {
       });
     }
 
-    this.checkID = function(id) {
-        console.log(id);
+    this.deleteTask = function(taskID) {
+      $http({
+        method: 'DELETE',
+        url: '/tasks/' + taskID
+      }).then(response => {
+        console.log(response);
+        this.getTasks();
+      }).catch(error => {
+        console.log(error);
+      });
     }
 
 }]);

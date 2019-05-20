@@ -54,7 +54,7 @@
                   <p>{{task.taskDescription}}</p>
                   <button>Edit</button>
                   <button ng-click="main.taskBeingEdited = task._id; main.checkID(task._id)">=></button>
-                  <button>X</button>
+                  <button ng-click="main.deleteTask(task._id)">X</button>
                 </div>
                 <button ng-click="main.indexOfCreateTaskForm = $index" ng-if="!(main.addButtonClicked)">ADD</button>
                 <form ng-submit="main.createTask(list._id)" ng-if="$index === main.indexOfCreateTaskForm">
