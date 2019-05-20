@@ -48,8 +48,8 @@
             <div>
                 <h3>{{list.listTitle}}</h3>
                 <div ng-repeat="task in main.tasks | filter:list._id">
-                  <div ng-repeat="object in main.movableLists">
-                    <button ng-click="main.currentList = object.data._id; main.moveTask(object.data._id)">{{object.data.listTitle}}</button>
+                  <div ng-repeat="list in main.lists">
+                    <button ng-click="main.currentList = list._id; main.moveTask(list._id)">{{list.listTitle}}</button>
                   </div>
                   <p>{{task.taskDescription}}</p>
                   <button>Edit</button>

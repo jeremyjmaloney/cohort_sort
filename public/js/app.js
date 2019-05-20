@@ -6,7 +6,6 @@ app.controller('MainController', ['$http', function($http) {
     this.indexOfMoveTaskForm = null;
     this.taskBeingEdited = null;
     this.currentList = null;
-    this.movableLists = [];
 
     this.createUser = function() {
         $http({
@@ -119,8 +118,6 @@ app.controller('MainController', ['$http', function($http) {
             url: '/lists/' + id
         }).then((response) => {
             console.log(response);
-            this.movableLists = response;
-            console.log(this.movableLists);
             this.lists = response.data;
         }).catch((error) => {
             console.log(error);
