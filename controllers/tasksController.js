@@ -19,7 +19,10 @@ router.get('/:id', (req, res) => {
 });
 
 router.put('/:taskID/:listID', (req, res) => {
-    Task.findByIdAndUpdate({_id: req.params.taskID}, {belongsToList: req.params.listID}, (error, foundTask) => {
+    console.log(req.params.listID);
+    Task.findByIdAndUpdate(req.params.taskID, {belongsToList: req.params.listID}, {new:true}, (error, foundTask) => {
+        console.log(foundTask);
+        console.log(req.body);
         res.json(foundTask);
     });
 });
