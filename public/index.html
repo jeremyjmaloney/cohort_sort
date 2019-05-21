@@ -59,8 +59,15 @@
                   <div class="taskButtons" ng-repeat="button in main.lists" ng-if="main.taskBeingEdited === task._id">
                     <button class="taskButton" ng-click="main.currentList = button._id; main.moveTask()">{{button.listTitle}}</button>
                   </div>
-                  <p class="description">{{task.taskDescription}}</p>
-                  <button class="edit">Edit</button>
+                  <p class="description" ng-if="!main.editingTask">{{task.taskDescription}}</p>
+                  <div ng-if="main.editingTask">
+                      <form ng-submit="main.editTask">
+                          <input type="text" ng-model="main.updatedDescription" placeholder="{{task.taskDescription}}"/>
+                          <input type="submit" value="Update Task"/>
+                      </form>
+                      <button ng-click="main.editingTask = false">Cancel</button>
+                  </div>
+                  <button ng-click="main.editingTask = true" ng-if="!main.editingTask" class="edit">Edit</button>
                   <button class="move" ng-click="main.taskBeingEdited = task._id; main.checkID(task._id)">=></button>
                   <button class="deleteTask" ng-click="main.deleteTask(task._id)">X</button>
                 </div>

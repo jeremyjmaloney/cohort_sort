@@ -7,6 +7,7 @@ app.controller('MainController', ['$http', function($http) {
     this.taskBeingEdited = null;
     this.currentList = null;
     this.addingUser = false;
+    this.editingTask = false;
 
     this.createUser = function() {
         $http({
