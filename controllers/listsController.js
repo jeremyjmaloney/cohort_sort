@@ -28,4 +28,10 @@ router.delete('/:listID', (req, res) => {
   });
 });
 
+router.put('/:id', (req, res) => {
+    List.findByIdAndUpdate(req.params.id, req.body, {new: true}, (error, foundList) => {
+        res.json(foundList);
+    });
+});
+
 module.exports = router;

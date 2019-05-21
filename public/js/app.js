@@ -10,6 +10,7 @@ app.controller('MainController', ['$http', function($http) {
     this.editingTask = false;
     this.indexOfEditTaskForm = null;
     this.editingBoardName = false;
+    this.indexOfEditListForm = null;
 
     this.createUser = function() {
         $http({
@@ -262,6 +263,24 @@ app.controller('MainController', ['$http', function($http) {
     this.goToBoards = function() {
         this.boardClicked = false;
         this.getBoards(this.loggedInUser._id);
+        this.editingBoardName = false;
+    }
+
+    this.editListName = function(list) {
+        $http({
+            method: 'PUT',
+            url: '/lists/' + list._id,
+            data: {
+                listTitle: this.updatedListName
+            }
+        }).then(response => {
+          console.log(response);
+          this.updatedListName = null;
+          this.indexOfEditListForm = null;
+          this.getLists(this.currentBoard._id);
+        }).catch(error => {
+          console.log(error);
+      });
     }
 
 }]);
