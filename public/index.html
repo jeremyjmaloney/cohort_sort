@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/css/app.css">
 </head>
 <body ng-controller="MainController as main">
-  <h1 ng-if="!main.loggedInUser">Cohort Sort</h1>
+  <h1 ng-if="!main.loggedInUser">CohortSort</h1>
   <div class="mainDiv">
       <div class="loginDiv" ng-if="!(main.loggedInUser)">
         <h2>Create User</h2>
@@ -36,7 +36,7 @@
       </div>
       <div class="listOfBoards" ng-repeat="board in main.boards" ng-if="main.loggedInUser && !main.boardClicked">
         <div class="boardButtonList">
-          <a class="boardButton" href="#" ng-click="main.showBoard(board._id)"><h2>{{board.title}}</h2></a>
+          <a class="boardButton" href="#" ng-click="main.showBoard(board._id)"><h2 class="boardButton">{{board.title}}</h2></a>
         </div>
       </div>
       <div ng-if="main.boardClicked === true">
@@ -59,18 +59,15 @@
                   <div class="taskButtons" ng-repeat="button in main.lists" ng-if="main.taskBeingEdited === task._id">
                     <button class="taskButton" ng-click="main.currentList = button._id; main.moveTask()">{{button.listTitle}}</button>
                   </div>
-
-                  <p class="description" ng-if="!main.editingTask">{{task.taskDescription}}</p>
-                  <div ng-if="main.editingTask">
-                      <form ng-submit="main.editTask(task)" ng-if="$index === main.indexOfEditFormToShow">
+                  <p class="description">{{task.taskDescription}}</p>
+                  <div ng-if="main.editingTask && $index === main.indexOfEditTaskForm && task.belongsToList === list._id">
+                      <form ng-submit="main.editTask(task)">
                           <input type="text" ng-model="main.updatedDescription" placeholder="{{task.taskDescription}}"/>
                           <input type="submit" value="Update Task"/>
                       </form>
-                      <button ng-click="main.editingTask = false">Cancel</button>
+                      <button ng-click="main.editingTask = false; main.indexOfEditTaskForm = null">Cancel</button>
                   </div>
-
-                  <button ng-click="main.editingTask = true; main.indexOfEditFormToShow = $index" ng-if="!main.editingTask" class="edit">Edit</button>
-
+                  <button ng-if="!main.editingTask && $index !== main.indexOfEditTaskForm" ng-click="main.editingTask = true; main.indexOfEditTaskForm = $index" class="edit">Edit</button>
                   <button class="move" ng-click="main.taskBeingEdited = task._id; main.checkID(task._id)">=></button>
                   <button class="deleteTask" ng-click="main.deleteTask(task._id)">X</button>
                 </div>
