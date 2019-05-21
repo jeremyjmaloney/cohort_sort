@@ -32,7 +32,6 @@
             <input type="text" ng-model="main.title" placeholder="Board Name"/>
             <input type="submit" value="Create Board"/>
         </form>
-        <button ng-click="main.logOut()">Log Out</button>
       </div>
       <div ng-repeat="board in main.boards" ng-if="main.loggedInUser && !main.boardClicked">
         <div>
@@ -40,6 +39,7 @@
         </div>
       </div>
       <div ng-if="main.boardClicked === true">
+        <div ng-include="'partials/nav.html'"></div>
         <h1>{{main.currentBoard.title}}</h1>
         <button ng-click="main.addingUser = true">+</button>
         <form ng-if="main.addingUser" ng-submit="main.addUser()">
