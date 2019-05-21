@@ -263,6 +263,7 @@ app.controller('MainController', ['$http', function($http) {
     this.goToBoards = function() {
         this.boardClicked = false;
         this.getBoards(this.loggedInUser._id);
+        this.editingBoardName = false;
     }
 
     this.editListName = function(list) {
