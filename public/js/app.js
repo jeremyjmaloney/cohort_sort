@@ -9,6 +9,7 @@ app.controller('MainController', ['$http', function($http) {
     this.addingUser = false;
     this.editingTask = false;
     this.indexOfEditTaskForm = null;
+    this.editingBoardName = false;
 
     this.createUser = function() {
         $http({
@@ -230,6 +231,15 @@ app.controller('MainController', ['$http', function($http) {
         }).catch(error => {
           console.log(error);
       });
+    }
+
+    this.compareIds = function(id, list) {
+        console.log(id, list);
+        if (id === list) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }]);
