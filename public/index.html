@@ -10,19 +10,19 @@
   <link rel="stylesheet" href="/css/app.css">
 </head>
 <body ng-controller="MainController as main">
-  <h1 ng-if="!main.loggedInUser">Welcome</h1>
+  <h1 ng-if="!main.loggedInUser">Cohort Sort</h1>
   <div class="mainDiv">
       <div class="loginDiv" ng-if="!(main.loggedInUser)">
         <h2>Create User</h2>
         <form ng-submit="main.createUser()">
-            <input type="text" ng-model="main.newUsername"/>
-            <input type="password" ng-model="main.newPassword"/>
+            <input type="text" ng-model="main.newUsername" placeholder="username"/>
+            <input type="password" ng-model="main.newPassword" placeholder="password"/>
             <input type="submit" value="Create User"/>
         </form>
         <h2>Log In</h2>
         <form ng-submit="main.logIn()">
-            <input type="text" ng-model="main.username"/>
-            <input type="password" ng-model="main.password"/>
+            <input type="text" ng-model="main.username" placeholder="username"/>
+            <input type="password" ng-model="main.password" placeholder="password"/>
             <input type="submit" value="Log In"/>
         </form>
       </div>
