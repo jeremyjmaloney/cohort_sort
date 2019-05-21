@@ -9,7 +9,7 @@
   <script src="/js/app.js" charset="utf-8"></script>
 </head>
 <body ng-controller="MainController as main">
-  <h1>Welcome</h1>
+  <h1 ng-if="!main.loggedInUser">Welcome</h1>
   <div>
       <div ng-if="!(main.loggedInUser)">
         <h2>Create User</h2>
@@ -26,12 +26,12 @@
         </form>
       </div>
       <div ng-if="main.loggedInUser && !main.boardClicked">
+        <div ng-include="'partials/nav.html'"></div>
         <h2>Hey {{main.loggedInUser.username}}</h2>
         <form ng-submit="main.createBoard()">
             <input type="text" ng-model="main.title" placeholder="Board Name"/>
             <input type="submit" value="Create Board"/>
         </form>
-        <button ng-click="main.logOut()">Log Out</button>
       </div>
       <div ng-repeat="board in main.boards" ng-if="main.loggedInUser && !main.boardClicked">
         <div>
@@ -39,6 +39,7 @@
         </div>
       </div>
       <div ng-if="main.boardClicked === true">
+        <div ng-include="'partials/nav.html'"></div>
         <h1>{{main.currentBoard.title}}</h1>
         <button ng-click="main.addingUser = true">+</button>
         <form ng-if="main.addingUser" ng-submit="main.addUser()">
@@ -54,7 +55,7 @@
                 <h3>{{list.listTitle}}</h3>
                 <button ng-click="main.deleteList(list._id)">X</button>
                 <div ng-repeat="task in main.tasks | filter:list._id">
-                  <div ng-repeat="button in main.lists" ng-if="main.taskBeingEdited">
+                  <div ng-repeat="button in main.lists" ng-if="main.taskBeingEdited === task._id">
                     <button ng-click="main.currentList = button._id; main.moveTask()">{{button.listTitle}}</button>
                   </div>
                   <p>{{task.taskDescription}}</p>

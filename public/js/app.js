@@ -66,6 +66,7 @@ app.controller('MainController', ['$http', function($http) {
         }).then((response)=>{
           // console.log(response);
           this.getBoards(this.loggedInUser._id);
+          this.title = null;
         }).catch((error)=>{
           console.log(error);
         });
@@ -108,6 +109,7 @@ app.controller('MainController', ['$http', function($http) {
             }
         }).then((response)=>{
            this.getLists(this.currentBoard._id);
+           this.listTitle = null;
         }).catch((error)=>{
           console.log(error);
         });
@@ -139,6 +141,7 @@ app.controller('MainController', ['$http', function($http) {
         console.log(response);
         this.getTasks();
         this.indexOfCreateTaskForm = null;
+        this.taskDescription = null;
       }).catch(error => {
         console.log(error);
       })
