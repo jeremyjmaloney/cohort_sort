@@ -66,6 +66,7 @@ app.controller('MainController', ['$http', function($http) {
         }).then((response)=>{
           // console.log(response);
           this.getBoards(this.loggedInUser._id);
+          this.title = null;
         }).catch((error)=>{
           console.log(error);
         });
