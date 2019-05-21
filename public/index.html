@@ -65,6 +65,14 @@
           <div class="listsDiv" ng-repeat="list in main.lists">
               <div class="listDiv">
                   <h3>{{list.listTitle}}</h3>
+                  <button ng-if="main.indexOfEditListForm === null" ng-click="main.indexOfEditListForm = $index">Edit</button>
+                  <div ng-if="$index === main.indexOfEditListForm">
+                      <form>
+                          <input type="test" ng-model="main.updatedListName" placeholder="{{list.listTitle}}">
+                          <input type="submit" value="Update List">
+                      </form>
+                      <button ng-click="main.indexOfEditListForm = null">Cancel</button>
+                  </div>
                   <button class="deleteList" ng-click="main.deleteList(list._id)">X</button>
                   <div class="tasksDiv" ng-repeat="task in main.tasks | filter:list._id">
                     <div class="taskButtons" ng-repeat="button in main.lists" ng-if="main.taskBeingEdited === task._id">
