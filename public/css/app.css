@@ -105,7 +105,59 @@ h2.boardButton {
 }
 h1.boardTitle {
   margin-bottom: 0;
+  margin-top: 0;
+  text-shadow: 2px 2px #71a5b6;
+}
+h3.listTitle {
+  font-size: 2em;
+  display: inline;
+  text-shadow: 2px 2px #71a5b6;
 }
 .addUser {
+  display: inline-block;
+}
+.listsContainer {
+  width: 90%;
+  height: 60%;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin: 2% auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: scroll;
+}
+.listDiv {
+  background-color: #d4d4d4;
+  border-radius: 6px;
+  width: 300px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.deleteList {
   display: inline;
+  float: right;
+  margin: 5px;
+  background-color: #ff835a;
+}
+.tasksDiv {
+  width: 95%;
+  background-color: ghostwhite;
+  border-radius: 6px;
+  margin: auto;
+  margin-top: 5px;
+}
+button.edit, button.move , button.deleteTask {
+  margin: 1%;
+  font-size: .75em;
+  height: 15px;
+}
+button.deleteTask {
+  background-color: #ff835a;
+}
+p.description {
+  margin: 0;
+  padding: 5px;
+  font-size: 1.25em;
 }
