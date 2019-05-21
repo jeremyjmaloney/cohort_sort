@@ -64,7 +64,7 @@
         <div class="listsContainer">
           <div class="listsDiv" ng-repeat="list in main.lists">
               <div class="listDiv">
-                  <h3>{{list.listTitle}}</h3>
+                  <h3 class="listTitle">{{list.listTitle}}</h3>
                   <button ng-click="main.indexOfEditListForm = $index">Edit</button>
                   <div ng-if="$index === main.indexOfEditListForm">
                       <form ng-submit="main.editListName(list)">
@@ -86,8 +86,8 @@
                         </form>
                         <button class="delete" ng-click="main.editingTask = false; main.indexOfEditTaskForm = null">Cancel</button>
                     </div>
-                    <button ng-click="main.editingTask = true; main.indexOfEditTaskForm = $index" class="edit">Edit</button>
-                    <button class="move" ng-click="main.taskBeingEdited = task._id; main.checkID(task._id)">=></button>
+                    <button ng-click="main.editingTask = true; main.indexOfEditTaskForm = $index" class="edit">EDIT</button>
+                    <button class="move" ng-click="main.taskBeingEdited = task._id; main.checkID(task._id)">MOVE</button>
                     <button class="deleteTask" ng-click="main.deleteTask(task._id)">X</button>
                   </div>
                   <button class="addTask" ng-click="main.indexOfCreateTaskForm = $index" ng-if="!(main.addButtonClicked)">ADD TASK</button>
