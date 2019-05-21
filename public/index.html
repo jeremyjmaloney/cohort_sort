@@ -60,7 +60,7 @@
                     <button class="taskButton" ng-click="main.currentList = button._id; main.moveTask()">{{button.listTitle}}</button>
                   </div>
                   <p class="description">{{task.taskDescription}}</p>
-                  <div ng-if="main.editingTask && $index === main.indexOfEditTaskForm && task.belongsToList === list._id">
+                  <div ng-if="main.editingTask && $index === main.indexOfEditTaskForm && main.compareIds(task.belongsToList, list._id)">
                       <form class="taskForm" ng-submit="main.editTask(task)">
                           <input class="taskInput" type="text" ng-model="main.updatedDescription" placeholder="{{task.taskDescription}}"/>
                           <input class="taskSubmit" type="submit" value="Update Task"/>

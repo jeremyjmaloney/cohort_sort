@@ -232,4 +232,13 @@ app.controller('MainController', ['$http', function($http) {
       });
     }
 
+    this.compareIds = function(id, list) {
+        console.log(id, list);
+        if (id === list) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }]);
