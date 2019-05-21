@@ -5,5 +5,89 @@ html {
 body {
   padding: 0;
   margin: 0;
-  background-color: #d4d4d4;
+  width: 100%;
+  height: 100%;
+  background-color: #9be7fe;
+  text-align: center;
+  font-family: helvetica, sans-serif;
+}
+form {
+  background-color: #8acce1;
+  width: 300px;
+  margin: auto;
+  border-radius: 6px;
+  box-shadow: 3px 3px 12px 3px #71a5b6;
+}
+input[type=text] {
+  font-size: 1.5em;
+  margin: 2%;
+  padding: 1%;
+  border-radius: 6px;
+}
+input[type=password] {
+  font-size: 1.5em;
+  margin: 2%;
+  padding: 1%;
+  border-radius: 6px;
+}
+input[type=submit] {
+  border: none;
+  background-color: #496a74;
+  color: white;
+  font-size: 1.25em;
+  margin: 2%;
+  border-radius: 6px;
+}
+h1 {
+  font-size: 3em;
+  color: white;
+}
+h2 {
+  color: #253338;
+}
+h3 {
+  color: white;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+button {
+  border: none;
+  background-color: #71a5b6;
+  font-size: 1.25em;
+  color: white;
+  border-radius: 6px;
+  height: 25px;
+  margin: 16px;
+}
+.boardsView {
+  padding: 0;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  background-color: #496a74;
+}
+.listOfBoards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 90%;
+  height: 60%;
+  background-color: white;
+  margin: 5% auto;
+  border-radius: 6px;
+}
+.boardButtonList {
+  width: 200px;
+  height: 100px;
+  background-color: #253338;
+  border-radius: 6px;
+  box-shadow: 3px 3px 12px 3px #ccc;
+}
+.boardButton {
+  text-decoration: none;
+  color: white;
 }
