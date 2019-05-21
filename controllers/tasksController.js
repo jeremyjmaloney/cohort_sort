@@ -34,5 +34,11 @@ router.delete('/:taskID', (req, res) => {
   })
 })
 
+router.put('/:id', (req, res) => {
+    Task.findByIdAndUpdate(req.params.id, req.body, {new: true}, (error, updatedTask) => {
+        res.json(updatedTask);
+    });
+});
+
 
 module.exports = router;

@@ -8,6 +8,7 @@ app.controller('MainController', ['$http', function($http) {
     this.currentList = null;
     this.addingUser = false;
     this.editingTask = false;
+    this.indexOfEditFormToShow = null;
 
     this.createUser = function() {
         $http({
@@ -210,6 +211,23 @@ app.controller('MainController', ['$http', function($http) {
       }).catch(error=>{
         console.log(error);
       })
+    }
+
+    this.editTask = function(task) {
+        $http({
+            method: 'PUT',
+            url: '/tasks/' + task._id,
+            data: {
+                taskDescription: this.updatedDescription
+            }
+        }).then(response => {
+          console.log(response);
+          this.updatedDescription = null;
+          this.editingTask = false;
+          this.getTasks();
+        }).catch(error => {
+          console.log(error);
+      });
     }
 
 }]);
