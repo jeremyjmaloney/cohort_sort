@@ -67,17 +67,23 @@ button {
   flex-direction: row;
   background-color: #496a74;
 }
-.listOfBoards {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.boardsContainer {
+  width: 90%;
+  height: 60%;
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
-  width: 90%;
-  height: 60%;
   background-color: white;
+  border-radius: 6px;
+  overflow: scroll;
   margin: 5% auto;
+}
+.listOfBoards {
+  display: inline-block;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 2.5%;
   border-radius: 6px;
 }
 .boardButtonList {
@@ -89,5 +95,17 @@ button {
 }
 .boardButton {
   text-decoration: none;
+}
+h2.boardButton {
   color: white;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  margin: 0;
+  overflow: scroll;
+}
+h1.boardTitle {
+  margin-bottom: 0;
+}
+.addUser {
+  display: inline;
 }
