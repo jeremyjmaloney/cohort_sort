@@ -40,4 +40,10 @@ router.put('/:boardID/:searchedUser', (req, res) => {
   });
 });
 
+router.put('/:id', (req, res) => {
+    Board.findByIdAndUpdate(req.params.id, req.body, {new: true}, (error, foundBoard) => {
+        res.json(foundBoard);
+    });
+});
+
 module.exports = router;
