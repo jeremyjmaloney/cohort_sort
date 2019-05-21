@@ -34,8 +34,8 @@
             <input type="submit" value="Create Board"/>
         </form>
       </div>
-      <div class="boardsContainer">
-          <div class="listOfBoards" ng-repeat="board in main.boards" ng-if="main.loggedInUser && !main.boardClicked">
+      <div class="boardsContainer" ng-if="main.loggedInUser && !main.boardClicked">
+          <div class="listOfBoards" ng-repeat="board in main.boards">
             <div class="boardButtonList">
               <a class="boardButton" href="#" ng-click="main.showBoard(board._id)"><h2 class="boardButton">{{board.title}}</h2></a>
             </div>
@@ -44,7 +44,7 @@
       <div ng-if="main.boardClicked === true">
         <div class="header" ng-include="'partials/nav.html'"></div>
         <h1>{{main.currentBoard.title}}</h1>
-        <button class="addUser" ng-click="main.editingBoardName = true">Edit Board Name</button>
+        <button class="addUser" ng-if="!main.editingBoardName" ng-click="main.editingBoardName = true">Edit</button>
         <div ng-if="main.editingBoardName">
             <form ng-submit="main.editBoardName(main.currentBoard)">
                 <input type="text" ng-model="main.updatedBoardName" placeholder="{{main.currentBoard.title}}"/>

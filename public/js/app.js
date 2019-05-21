@@ -242,4 +242,14 @@ app.controller('MainController', ['$http', function($http) {
         }
     }
 
+    this.editBoardName = function(board) {
+        $http({
+            method: 'PUT',
+            url: '/boards/' + board._id,
+            data: {
+
+            }
+        })
+    }
+
 }]);
