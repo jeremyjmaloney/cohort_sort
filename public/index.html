@@ -65,9 +65,9 @@
           <div class="listsDiv" ng-repeat="list in main.lists">
               <div class="listDiv">
                   <h3>{{list.listTitle}}</h3>
-                  <button ng-if="main.indexOfEditListForm === null" ng-click="main.indexOfEditListForm = $index">Edit</button>
+                  <button ng-click="main.indexOfEditListForm = $index">Edit</button>
                   <div ng-if="$index === main.indexOfEditListForm">
-                      <form>
+                      <form ng-submit="main.editListName(list)">
                           <input type="test" ng-model="main.updatedListName" placeholder="{{list.listTitle}}">
                           <input type="submit" value="Update List">
                       </form>

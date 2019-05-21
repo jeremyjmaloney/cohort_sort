@@ -265,4 +265,21 @@ app.controller('MainController', ['$http', function($http) {
         this.getBoards(this.loggedInUser._id);
     }
 
+    this.editListName = function(list) {
+        $http({
+            method: 'PUT',
+            url: '/lists/' + list._id,
+            data: {
+                listTitle: this.updatedListName
+            }
+        }).then(response => {
+          console.log(response);
+          this.updatedListName = null;
+          this.indexOfEditListForm = null;
+          this.getLists(this.currentBoard._id);
+        }).catch(error => {
+          console.log(error);
+      });
+    }
+
 }]);
