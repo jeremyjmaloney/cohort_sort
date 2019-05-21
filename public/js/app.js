@@ -242,4 +242,22 @@ app.controller('MainController', ['$http', function($http) {
         }
     }
 
+    this.editBoardName = function(board) {
+        $http({
+            method: 'PUT',
+            url: '/boards/' + board._id,
+            data: {
+                title: this.updatedBoardName
+            }
+        }).then(response => {
+          console.log(response);
+          this.updatedDescription = null;
+          this.editingTask = false;
+          this.indexOfEditTaskForm = null;
+          this.getTasks();
+        }).catch(error => {
+          console.log(error);
+      });
+    }
+
 }]);
