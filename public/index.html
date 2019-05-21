@@ -9,7 +9,7 @@
   <script src="/js/app.js" charset="utf-8"></script>
 </head>
 <body ng-controller="MainController as main">
-  <h1>Welcome</h1>
+  <h1 ng-if="!main.loggedInUser">Welcome</h1>
   <div>
       <div ng-if="!(main.loggedInUser)">
         <h2>Create User</h2>
