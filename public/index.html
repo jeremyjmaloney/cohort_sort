@@ -7,11 +7,12 @@
   <title>Cohort Sort</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js" charset="utf-8"></script>
   <script src="/js/app.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="/css/app.css">
 </head>
 <body ng-controller="MainController as main">
   <h1 ng-if="!main.loggedInUser">Welcome</h1>
-  <div>
-      <div ng-if="!(main.loggedInUser)">
+  <div class="mainDiv">
+      <div class="loginDiv" ng-if="!(main.loggedInUser)">
         <h2>Create User</h2>
         <form ng-submit="main.createUser()">
             <input type="text" ng-model="main.newUsername"/>
@@ -25,23 +26,23 @@
             <input type="submit" value="Log In"/>
         </form>
       </div>
-      <div ng-if="main.loggedInUser && !main.boardClicked">
-        <div ng-include="'partials/nav.html'"></div>
+      <div class="boardsView" ng-if="main.loggedInUser && !main.boardClicked">
+        <div class="header" ng-include="'partials/nav.html'"></div>
         <h2>Hey {{main.loggedInUser.username}}</h2>
         <form ng-submit="main.createBoard()">
             <input type="text" ng-model="main.title" placeholder="Board Name"/>
             <input type="submit" value="Create Board"/>
         </form>
       </div>
-      <div ng-repeat="board in main.boards" ng-if="main.loggedInUser && !main.boardClicked">
-        <div>
-          <a href="#" ng-click="main.showBoard(board._id)"><h2>{{board.title}}</h2></a>
+      <div class="listOfBoards" ng-repeat="board in main.boards" ng-if="main.loggedInUser && !main.boardClicked">
+        <div class="boardButtonList">
+          <a class="boardButton" href="#" ng-click="main.showBoard(board._id)"><h2>{{board.title}}</h2></a>
         </div>
       </div>
       <div ng-if="main.boardClicked === true">
-        <div ng-include="'partials/nav.html'"></div>
+        <div class="header" ng-include="'partials/nav.html'"></div>
         <h1>{{main.currentBoard.title}}</h1>
-        <button ng-click="main.addingUser = true">+</button>
+        <button class="addUser" ng-click="main.addingUser = true">+</button>
         <form ng-if="main.addingUser" ng-submit="main.addUser()">
           <input type="text" ng-model="main.searchedUser" placeholder="Username">
           <input type="submit" value="ADD">
@@ -50,20 +51,20 @@
             <input type="text" ng-model="main.listTitle" placeholder="list title"/>
             <input type="submit" value="Create List"/>
         </form>
-        <div ng-repeat="list in main.lists">
-            <div>
+        <div class="listsDiv" ng-repeat="list in main.lists">
+            <div class="listDiv">
                 <h3>{{list.listTitle}}</h3>
-                <button ng-click="main.deleteList(list._id)">X</button>
-                <div ng-repeat="task in main.tasks | filter:list._id">
-                  <div ng-repeat="button in main.lists" ng-if="main.taskBeingEdited === task._id">
-                    <button ng-click="main.currentList = button._id; main.moveTask()">{{button.listTitle}}</button>
+                <button class="deleteList" ng-click="main.deleteList(list._id)">X</button>
+                <div class="tasksDiv" ng-repeat="task in main.tasks | filter:list._id">
+                  <div class="taskButtons" ng-repeat="button in main.lists" ng-if="main.taskBeingEdited === task._id">
+                    <button class="taskButton" ng-click="main.currentList = button._id; main.moveTask()">{{button.listTitle}}</button>
                   </div>
-                  <p>{{task.taskDescription}}</p>
-                  <button>Edit</button>
-                  <button ng-click="main.taskBeingEdited = task._id; main.checkID(task._id)">=></button>
-                  <button ng-click="main.deleteTask(task._id)">X</button>
+                  <p class="description">{{task.taskDescription}}</p>
+                  <button class="edit">Edit</button>
+                  <button class="move" ng-click="main.taskBeingEdited = task._id; main.checkID(task._id)">=></button>
+                  <button class="deleteTask" ng-click="main.deleteTask(task._id)">X</button>
                 </div>
-                <button ng-click="main.indexOfCreateTaskForm = $index" ng-if="!(main.addButtonClicked)">ADD</button>
+                <button class="addTask" ng-click="main.indexOfCreateTaskForm = $index" ng-if="!(main.addButtonClicked)">ADD TASK</button>
                 <form ng-submit="main.createTask(list._id)" ng-if="$index === main.indexOfCreateTaskForm">
                   <input type="text" ng-model="main.taskDescription" />
                   <input ng-click="$index = null" type="submit" value="Create Task" />
