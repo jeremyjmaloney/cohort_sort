@@ -34,14 +34,24 @@
             <input type="submit" value="Create Board"/>
         </form>
       </div>
-      <div class="listOfBoards" ng-repeat="board in main.boards" ng-if="main.loggedInUser && !main.boardClicked">
-        <div class="boardButtonList">
-          <a class="boardButton" href="#" ng-click="main.showBoard(board._id)"><h2 class="boardButton">{{board.title}}</h2></a>
-        </div>
+      <div class="boardsContainer">
+          <div class="listOfBoards" ng-repeat="board in main.boards" ng-if="main.loggedInUser && !main.boardClicked">
+            <div class="boardButtonList">
+              <a class="boardButton" href="#" ng-click="main.showBoard(board._id)"><h2 class="boardButton">{{board.title}}</h2></a>
+            </div>
+          </div>
       </div>
       <div ng-if="main.boardClicked === true">
         <div class="header" ng-include="'partials/nav.html'"></div>
         <h1>{{main.currentBoard.title}}</h1>
+        <button class="addUser" ng-click="main.editingBoardName = true">Edit Board Name</button>
+        <div ng-if="main.editingBoardName">
+            <form ng-submit="main.editBoardName(main.currentBoard)">
+                <input type="text" ng-model="main.updatedBoardName" placeholder="{{main.currentBoard.title}}"/>
+                <input type="submit" value="Edit Board Name"/>
+            </form>
+            <button ng-click="main.editingBoardName = false">Cancel</button>
+        </div>
         <button class="addUser" ng-click="main.addingUser = true">+</button>
         <form ng-if="main.addingUser" ng-submit="main.addUser()">
           <input type="text" ng-model="main.searchedUser" placeholder="Username">

@@ -9,6 +9,7 @@ app.controller('MainController', ['$http', function($http) {
     this.addingUser = false;
     this.editingTask = false;
     this.indexOfEditTaskForm = null;
+    this.editingBoardName = false;
 
     this.createUser = function() {
         $http({
