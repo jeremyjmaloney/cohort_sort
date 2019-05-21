@@ -26,6 +26,7 @@
         </form>
       </div>
       <div ng-if="main.loggedInUser && !main.boardClicked">
+        <div ng-include="'partials/nav.html'"></div>
         <h2>Hey {{main.loggedInUser.username}}</h2>
         <form ng-submit="main.createBoard()">
             <input type="text" ng-model="main.title" placeholder="Board Name"/>
