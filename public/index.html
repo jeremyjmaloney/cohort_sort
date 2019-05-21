@@ -67,7 +67,7 @@
                       </form>
                       <button ng-click="main.editingTask = false; main.indexOfEditTaskForm = null">Cancel</button>
                   </div>
-                  <button ng-if="!main.editingTask && $index !== main.indexOfEditTaskForm" ng-click="main.editingTask = true; main.indexOfEditTaskForm = $index" class="edit">Edit</button>
+                  <button ng-click="main.editingTask = true; main.indexOfEditTaskForm = $index" class="edit">Edit</button>
                   <button class="move" ng-click="main.taskBeingEdited = task._id; main.checkID(task._id)">=></button>
                   <button class="deleteTask" ng-click="main.deleteTask(task._id)">X</button>
                 </div>
