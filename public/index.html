@@ -54,7 +54,7 @@
                 <h3>{{list.listTitle}}</h3>
                 <button ng-click="main.deleteList(list._id)">X</button>
                 <div ng-repeat="task in main.tasks | filter:list._id">
-                  <div ng-repeat="button in main.lists" ng-if="main.taskBeingEdited">
+                  <div ng-repeat="button in main.lists" ng-if="main.taskBeingEdited === task._id">
                     <button ng-click="main.currentList = button._id; main.moveTask()">{{button.listTitle}}</button>
                   </div>
                   <p>{{task.taskDescription}}</p>
