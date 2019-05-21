@@ -251,13 +251,17 @@ app.controller('MainController', ['$http', function($http) {
             }
         }).then(response => {
           console.log(response);
-          this.updatedDescription = null;
-          this.editingTask = false;
-          this.indexOfEditTaskForm = null;
-          this.getTasks();
+          this.updatedBoardName = null;
+          this.editingBoardName = false;
+          this.showBoard(this.currentBoard._id);
         }).catch(error => {
           console.log(error);
       });
+    }
+
+    this.goToBoards = function() {
+        this.boardClicked = false;
+        this.getBoards(this.loggedInUser._id);
     }
 
 }]);
