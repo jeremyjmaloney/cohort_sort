@@ -50,6 +50,7 @@ app.controller('MainController', ['$http', function($http) {
         url: '/sessions'
       }).then(response=>{
         this.loggedInUser = null;
+        this.boardClicked = false;
       }).catch(error=>{
         console.log(error);
       });
