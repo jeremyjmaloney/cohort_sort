@@ -212,7 +212,8 @@ app.controller('MainController', ['$http', function($http) {
         this.addingUser = false;
       }).catch(error=>{
         console.log(error);
-      })
+        this.addingUser = false;
+      });
     }
 
     this.editTask = function(task) {
@@ -228,6 +229,7 @@ app.controller('MainController', ['$http', function($http) {
           this.updatedDescription = null;
           this.editingTask = false;
           this.indexOfEditTaskForm = null;
+          this.currentList = null;
           this.getTasks();
         }).catch(error => {
           console.log(error);

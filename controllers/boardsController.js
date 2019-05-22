@@ -29,14 +29,17 @@ router.get('/board/:id', (req, res)=>{
 });
 
 router.put('/:boardID/:searchedUser', (req, res) => {
-  // console.log(req.params.searchedUser);
   User.find({username: req.params.searchedUser}, (error, foundUser) => {
-    // console.log(foundUser[0]._id);
-    // console.log(req.params.boardID);
-    Board.findByIdAndUpdate(req.params.boardID, {$push: {belongsTo: (foundUser[0]._id).toString()}}, (error, foundBoard) => {
-      // console.log(foundBoard);
-      res.json(foundBoard);
-    });
+      console.log(foundUser);
+    if (foundUser.length > 0) {
+        console.log(foundUser);
+        Board.findByIdAndUpdate(req.params.boardID, {$push: {belongsTo: (foundUser[0]._id).toString()}}, (error, foundBoard) => {
+          // console.log(foundBoard);
+          res.json(foundBoard);
+        });
+    } else {
+        res.json({message: 'invalid user'})
+    }
   });
 });
 

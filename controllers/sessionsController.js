@@ -13,22 +13,23 @@ router.delete('/', (req, res)=>{
 });
 
 router.post('/', (req, res)=>{
-
     User.findOne({username:req.body.username}, (err, foundUser)=>{
       console.log(req.body.username, foundUser);
-        if(bcrypt.compareSync(req.body.password, foundUser.password)) {
-            req.session.currentUser = foundUser;
-            res.status(201).json({
-                status: 201,
-                message: 'session created',
-                user: req.session.currentUser
-            })
-        } else {
-            res.status(401).json({
-                status: 401,
-                message: 'login failed'
-            });
-        }
+      if (foundUser) {
+          if(bcrypt.compareSync(req.body.password, foundUser.password)) {
+              req.session.currentUser = foundUser;
+              res.status(201).json({
+                  status: 201,
+                  message: 'session created',
+                  user: req.session.currentUser
+              })
+          } else {
+              res.status(401).json({
+                  status: 401,
+                  message: 'login failed'
+              });
+          }
+       } 
     });
 });
 

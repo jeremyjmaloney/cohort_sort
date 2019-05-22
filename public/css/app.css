@@ -183,3 +183,11 @@ p.description {
   box-shadow: none;
   display: block;
 }
+
+.editTaskForm {
+    background-color: white;
+    border-radius: 6px;
+    width: 280px;
+    box-shadow: none;
+    display: block;
+}

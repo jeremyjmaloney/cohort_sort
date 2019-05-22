@@ -49,6 +49,7 @@
             <form ng-submit="main.editBoardName(main.currentBoard)">
                 <input type="text" ng-model="main.updatedBoardName" placeholder="{{main.currentBoard.title}}"/>
                 <input type="submit" value="Edit Board Name"/>
+
             </form>
             <button ng-click="main.editingBoardName = false">Cancel</button>
         </div>
@@ -56,6 +57,7 @@
         <form ng-if="main.addingUser" ng-submit="main.addUser()">
           <input type="text" ng-model="main.searchedUser" placeholder="Username">
           <input type="submit" value="ADD">
+          <button class="addUser" ng-if="main.addingUser" ng-click="main.addingUser = false">Cancel</button>
         </form>
         <form ng-submit="main.createList()">
             <input type="text" ng-model="main.listTitle" placeholder="list title"/>
@@ -67,11 +69,11 @@
                   <h3 class="listTitle">{{list.listTitle}}</h3>
                   <button ng-click="main.indexOfEditListForm = $index">Edit</button>
                   <div ng-if="$index === main.indexOfEditListForm">
-                      <form ng-submit="main.editListName(list)">
-                          <input type="test" ng-model="main.updatedListName" placeholder="{{list.listTitle}}">
+                      <form class="newTaskForm" ng-submit="main.editListName(list)">
+                          <input type="text" ng-model="main.updatedListName" placeholder="{{list.listTitle}}">
                           <input type="submit" value="Update List">
+                          <button ng-click="main.indexOfEditListForm = null">Cancel</button>
                       </form>
-                      <button ng-click="main.indexOfEditListForm = null">Cancel</button>
                   </div>
                   <button class="deleteList" ng-click="main.deleteList(list._id)">X</button>
                   <div class="tasksDiv" ng-repeat="task in main.tasks | filter:list._id">
@@ -79,14 +81,12 @@
                       <button class="taskButton" ng-click="main.currentList = button._id; main.moveTask()">{{button.listTitle}}</button>
                     </div>
                     <p class="description">{{task.taskDescription}}</p>
-                    <div ng-if="main.editingTask && $index === main.indexOfEditTaskForm && main.compareIds(task.belongsToList, list._id)">
-                        <form class="taskForm" ng-submit="main.editTask(task)">
-                            <input class="taskInput" type="text" ng-model="main.updatedDescription" placeholder="{{task.taskDescription}}"/>
-                            <input class="taskSubmit" type="submit" value="Update Task"/>
-                        </form>
-                        <button class="delete" ng-click="main.editingTask = false; main.indexOfEditTaskForm = null">Cancel</button>
-                    </div>
-                    <button ng-click="main.editingTask = true; main.indexOfEditTaskForm = $index" class="edit">EDIT</button>
+                    <form class="editTaskForm" ng-if="main.editingTask && $index === main.indexOfEditTaskForm && main.compareIds(task.belongsToList, main.currentList)" ng-submit="main.editTask(task)">
+                        <input class="taskInput" type="text" ng-model="main.updatedDescription" placeholder="{{task.taskDescription}}"/>
+                        <input class="taskSubmit" type="submit" value="Update Task"/>
+                        <button class="delete" ng-click="main.editingTask = false; main.indexOfEditTaskForm = null; main.currentList = null">Cancel</button>
+                    </form>
+                    <button ng-click="main.editingTask = true; main.indexOfEditTaskForm = $index; main.currentList = list._id" class="edit">EDIT</button>
                     <button class="move" ng-click="main.taskBeingEdited = task._id; main.checkID(task._id)">MOVE</button>
                     <button class="deleteTask" ng-click="main.deleteTask(task._id)">X</button>
                   </div>
